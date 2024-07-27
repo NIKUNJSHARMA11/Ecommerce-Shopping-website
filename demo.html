@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Example</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #282c34;
+}
+
+.animation-box {
+    width: 50px;
+    height: 50px;
+    background-color: #61dafb;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+</style>
+<body>
+    <div class="animation-box" id="animationBox"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const box = document.getElementById('animationBox');
+    let pos = 0;
+    const fps = 60;
+    const duration = 5; // Duration of the animation in seconds
+    const totalFrames = fps * duration;
+
+    function animate() {
+        pos += (window.innerWidth / totalFrames);
+        box.style.left = `${pos}px`;
+
+        if (pos < window.innerWidth) {
+            requestAnimationFrame(animate);
+        } else {
+            pos = 0;
+            requestAnimationFrame(animate);
+        }
+    }
+
+    animate();
+});
+
+    </script>
+</body>
+
+</html>
+
